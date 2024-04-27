@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title> Length Converter</title>
+		<style>
+			* {font-size: 3.5vw; font-family: century;}
+			body {background-color: #a4bfbe; padding: 100px;}
+			h1 {background-color:black; color:white; width:70%;}
+			.bor { border:solid; width:70%; border-radius:5px;}
+		</style>
+	</head>
+	
+	<body>
+		<center>
+		<div class="bor">
+			<h1> Length Converter App...</h1>
+			<form onsubmit="check(); return false;">
+   					<strong>&#x22</strong> <input type="text" pattern="\d+(\.\d+)?" placeholder="Enter a value" id="inc"/>
+    					<br><br>
+    					<strong>&#13212</strong> <input type="number" step="any" placeholder="Converted in &#13212;" id="mili" 						readonly/>
+			</form>
+			<script>
+				let inc = document.getElementById("inc");
+				let mili = document.getElementById("mili");
+				let msg = document.getElementById("msg");
+
+				inc.addEventListener("input", function () {
+					check();
+				});
+
+				function check() {
+					// Validate input
+					let inputValue = parseFloat(inc.value);
+
+					if (isNaN(inputValue) || inputValue < 0) {
+						alert("Invalid input. Please enter a positive number.");
+						msg.innerHTML = "";
+						inc.focus();
+						return;
+					}
+
+					// Perform conversion
+					let convertedValue = inputValue * 25.4;
+					mili.value = convertedValue.toFixed(2);
+				}
+			</script>
+			<h2 id="msg"></h2>
+		</div>
+		</center>
+	</body>
+</html>
